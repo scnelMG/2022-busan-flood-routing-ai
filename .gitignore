@@ -1,0 +1,17 @@
+# Private curation and course artifacts
+.omo/
+docs/release-manifest.md
+.ipynb_checkpoints/
+
+# Never publish source data or generated experiment artifacts
+data/private/
+data/raw/
+data/processed/
+results/generated/
+
+# Local environments and editor files
+.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+.vscode/
