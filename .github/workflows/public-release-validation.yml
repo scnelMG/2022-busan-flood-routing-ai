@@ -1,0 +1,18 @@
+name: Public release validation
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-public-release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate public release boundary
+        shell: pwsh
+        run: ./scripts/validate-public-release.ps1
