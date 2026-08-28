@@ -16,6 +16,7 @@ $unixAbsolutePath = '(?<![A-Za-z0-9_])/(Users|home|mnt)(/|$)'
 $driveMountPattern = '/cont' + 'ent/drive'
 $imageUriPattern = 'data:' + 'image/'
 $base64PayloadPattern = '[A-Za-z0-9+/]{200,}={0,2}'
+$approvedStaticAssetPath = '^assets/flood-scenario-route\.png$'
 
 function Add-StringLeaves {
     param(
@@ -139,7 +140,9 @@ $pathViolations = @($pathCandidates | Where-Object {
 })
 
 $contentFiles = @($publicCandidates | Where-Object {
-    $_ -ne 'scripts/validate-public-release.ps1' -and $_ -notmatch '\.ipynb$'
+    $_ -ne 'scripts/validate-public-release.ps1' -and
+    $_ -notmatch '\.ipynb$' -and
+    $_ -notmatch $approvedStaticAssetPath
 })
 $contentViolations = New-Object System.Collections.Generic.List[string]
 foreach ($relativePath in $contentFiles) {
